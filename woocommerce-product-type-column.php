@@ -10,7 +10,7 @@
  * Text Domain: woocommerce-product-type-column
  * Domain Path: /languages
  *
- * Copyright (C) 2017 WooCommerce
+ * Copyright (C) 2018 WooCommerce
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
