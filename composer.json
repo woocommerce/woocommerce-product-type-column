@@ -1,6 +1,6 @@
 {
   "name": "woocommerce/woocommerce-product-type-column",
-  "description": "@todo",
+  "description": "Displays a product type column with icons on products admin screen",
   "homepage": "https://github.com/woocommerce/woocommerce-product-type-column",
   "type": "wordpress-plugin",
   "license": "GPL-3.0-or-later",
