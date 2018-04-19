@@ -35,7 +35,8 @@ class WC_Product_Type_Column_Admin {
 		$current_screen = get_current_screen();
 		$suffix         = is_rtl() ? '-rtl' : '';
 
-		wp_register_style( 'wc-product-type-column-admin-styles', plugins_url( 'assets/css/admin/admin' . $suffix . '.css', WC_PRODUCT_TYPE_COLUMN_PLUGIN_FILE ), null, WC_PRODUCT_TYPE_COLUMN_VERSION );
+		wp_register_style( 'wc-product-type-column-admin-styles', plugins_url( 'assets/css/admin/admin' . $suffix . '.css', WC_PRODUCT_TYPE_COLUMN_PLUGIN_FILE ), array( 'woocommerce_admin_styles' ), WC_PRODUCT_TYPE_COLUMN_VERSION );
+		wp_style_add_data( 'wc-product-type-column-admin-styles', 'rtl', 'replace' );
 
 		if ( 'edit-product' === $current_screen->id ) {
 			wp_enqueue_style( 'wc-product-type-column-admin-styles' );
