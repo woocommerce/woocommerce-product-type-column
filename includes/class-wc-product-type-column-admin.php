@@ -24,7 +24,7 @@ class WC_Product_Type_Column_Admin {
 	 */
 	public function init() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-		add_filter( 'manage_product_posts_columns', array( $this, 'add_product_type_column' ), 10 );
+		add_filter( 'manage_product_posts_columns', array( $this, 'add_product_type_column' ), 11 );
 		add_action( 'manage_product_posts_custom_column', array( $this, 'add_product_type_column_cont' ), 10, 2 );
 	}
 
@@ -49,9 +49,16 @@ class WC_Product_Type_Column_Admin {
 	 * @return array         Columns to display, with Product Type column added.
 	 */
 	public function add_product_type_column( $columns ) {
-		$columns[ $this->column_name ] = '<span class="wc-type parent-tips" data-tip="' . esc_attr__( 'Type', 'woocommerce-product-type-column' ) . '">' . esc_html__( 'Type', 'woocommerce-product-type-column' ) . '</span>';
+		$new                       = array();
+		$new[ $this->column_name ] = '<span class="wc-type parent-tips" data-tip="' . esc_attr__( 'Type', 'woocommerce-product-type-column' ) . '">' . esc_html__( 'Type', 'woocommerce-product-type-column' ) . '</span>';
 
-		return $columns;
+		// Insert before "date" column.
+		$date_index = array_search( 'date', array_keys( $columns ), true );
+		if ( 0 < $date_index ) {
+			return array_slice( $columns, 0, $date_index, true ) + $new + array_slice( $columns, $date_index, count( $columns ) - 1, true );
+		}
+
+		return array_merge( $columns, $new );
 	}
 
 	/**
