@@ -69,26 +69,30 @@ class WC_Product_Type_Column_Admin {
 	 */
 	public function add_product_type_column_cont( $column_name, $post_id ) {
 		if ( $column_name === $this->column_name ) {
-			$product = wc_get_product( $post_id );
+			global $the_product;
 
-			if ( $product->is_type( 'grouped' ) ) {
+			if ( empty( $the_product ) || $the_product->get_id() !== $post_id ) {
+				$the_product = wc_get_product( $post_id );
+			}
+
+			if ( $the_product->is_type( 'grouped' ) ) {
 				echo '<span class="product-type tips grouped" data-tip="' . esc_attr__( 'Grouped', 'woocommerce-product-type-column' ) . '"></span>';
-			} elseif ( $product->is_type( 'external' ) ) {
+			} elseif ( $the_product->is_type( 'external' ) ) {
 				echo '<span class="product-type tips external" data-tip="' . esc_attr__( 'External/Affiliate', 'woocommerce-product-type-column' ) . '"></span>';
-			} elseif ( $product->is_type( 'simple' ) ) {
+			} elseif ( $the_product->is_type( 'simple' ) ) {
 
-				if ( $product->is_virtual() ) {
+				if ( $the_product->is_virtual() ) {
 					echo '<span class="product-type tips virtual" data-tip="' . esc_attr__( 'Virtual', 'woocommerce-product-type-column' ) . '"></span>';
-				} elseif ( $product->is_downloadable() ) {
+				} elseif ( $the_product->is_downloadable() ) {
 					echo '<span class="product-type tips downloadable" data-tip="' . esc_attr__( 'Downloadable', 'woocommerce-product-type-column' ) . '"></span>';
 				} else {
 					echo '<span class="product-type tips simple" data-tip="' . esc_attr__( 'Simple', 'woocommerce-product-type-column' ) . '"></span>';
 				}
-			} elseif ( $product->is_type( 'variable' ) ) {
+			} elseif ( $the_product->is_type( 'variable' ) ) {
 				echo '<span class="product-type tips variable" data-tip="' . esc_attr__( 'Variable', 'woocommerce-product-type-column' ) . '"></span>';
 			} else {
 				// Assuming that we have other types in future.
-				echo '<span class="product-type tips ' . esc_attr( sanitize_html_class( $product->get_type() ) ) . '" data-tip="' . esc_attr( ucfirst( $product->get_type() ) ) . '"></span>';
+				echo '<span class="product-type tips ' . esc_attr( sanitize_html_class( $the_product->get_type() ) ) . '" data-tip="' . esc_attr( ucfirst( $the_product->get_type() ) ) . '"></span>';
 			}
 		}
 	}
