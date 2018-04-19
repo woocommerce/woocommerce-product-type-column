@@ -41,8 +41,9 @@ if ( ! defined( 'WC_PRODUCT_TYPE_COLUMN_PLUGIN_FILE' ) ) {
 }
 
 // Include the main WooCommerce class.
-if ( ! class_exists( 'WooCommerce' ) ) {
+if ( ! class_exists( 'WC_Product_Type_Column' ) ) {
 	include_once dirname( __FILE__ ) . '/includes/class-wc-product-type-column.php';
 }
 
 add_action( 'plugins_loaded', array( 'WC_Product_Type_Column', 'init' ) );
+register_activation_hook( __FILE__, array( 'WC_Product_Type_Column', 'activation_check' ) );
