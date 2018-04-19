@@ -1,0 +1,36 @@
+{
+  "name": "woocommerce-product-type-column",
+  "title": "WooCommerce Orders Product Type Column",
+  "version": "1.0.0",
+  "homepage": "https://github.com/woocommerce/woocommerce-product-type-column",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woocommerce/woocommerce-product-type-column.git"
+  },
+  "license": "GPL-3.0+",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "build": "grunt",
+    "build-watch": "grunt watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "~8.3.0",
+    "grunt": "~1.0.1",
+    "grunt-checktextdomain": "~1.0.1",
+    "grunt-contrib-clean": "~1.1.0",
+    "grunt-contrib-cssmin": "~2.2.1",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-uglify": "~3.3.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-postcss": "~0.9.0",
+    "grunt-rtlcss": "~2.0.1",
+    "grunt-sass": "~2.1.0",
+    "grunt-stylelint": "~0.10.0",
+    "grunt-wp-i18n": "~1.0.1",
+    "stylelint": "~9.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.3",
+    "npm": ">=5.5.1"
+  }
+}
