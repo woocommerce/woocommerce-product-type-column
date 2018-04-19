@@ -12,65 +12,14 @@ module.exports = function( grunt ) {
 			js: 'assets/js'
 		},
 
-		// JavaScript linting with JSHint.
-		jshint: {
-			options: {
-				jshintrc: '.jshintrc'
-			},
-			all: [
-				'Gruntfile.js',
-				'<%= dirs.js %>/admin/*.js',
-				'!<%= dirs.js %>/admin/*.min.js',
-				'<%= dirs.js %>/frontend/*.js',
-				'!<%= dirs.js %>/frontend/*.min.js'
-			]
-		},
-
 		// Sass linting with Stylelint.
 		stylelint: {
 			options: {
 				configFile: '.stylelintrc'
 			},
 			all: [
-				'<%= dirs.css %>/*.scss'
+				'<%= dirs.css %>/admin/*.scss'
 			]
-		},
-
-		// Minify .js files.
-		uglify: {
-			options: {
-				ie8: true,
-				parse: {
-					strict: false
-				},
-				output: {
-					comments : /@license|@preserve|^!/
-				}
-			},
-			admin: {
-				files: [{
-					expand: true,
-					cwd: '<%= dirs.js %>/admin/',
-					src: [
-						'*.js',
-						'!*.min.js'
-					],
-					dest: '<%= dirs.js %>/admin/',
-					ext: '.min.js'
-				}]
-			},
-			frontend: {
-				files: [{
-					expand: true,
-					cwd: '<%= dirs.js %>/frontend/',
-					src: [
-						'*.js',
-						'!*.min.js'
-					],
-					dest: '<%= dirs.js %>/frontend/',
-					ext: '.min.js'
-				}]
-			}
 		},
 
 		// Compile all .scss files.
@@ -81,9 +30,9 @@ module.exports = function( grunt ) {
 				},
 				files: [{
 					expand: true,
-					cwd: '<%= dirs.css %>/',
+					cwd: '<%= dirs.css %>/admin/',
 					src: ['*.scss'],
-					dest: '<%= dirs.css %>/',
+					dest: '<%= dirs.css %>/admin/',
 					ext: '.css'
 				}]
 			}
@@ -93,13 +42,13 @@ module.exports = function( grunt ) {
 		rtlcss: {
 			woocommerce: {
 				expand: true,
-				cwd: '<%= dirs.css %>',
+				cwd: '<%= dirs.css %>/admin/',
 				src: [
 					'*.css',
 					'!select2.css',
 					'!*-rtl.css'
 				],
-				dest: '<%= dirs.css %>/',
+				dest: '<%= dirs.css %>/admin/',
 				ext: '-rtl.css'
 			}
 		},
@@ -108,9 +57,9 @@ module.exports = function( grunt ) {
 		cssmin: {
 			minify: {
 				expand: true,
-				cwd: '<%= dirs.css %>/',
+				cwd: '<%= dirs.css %>/admin/',
 				src: ['*.css'],
-				dest: '<%= dirs.css %>/',
+				dest: '<%= dirs.css %>/admin/',
 				ext: '.css'
 			}
 		},
@@ -118,17 +67,8 @@ module.exports = function( grunt ) {
 		// Watch changes for assets.
 		watch: {
 			css: {
-				files: ['<%= dirs.css %>/*.scss'],
+				files: ['<%= dirs.css %>/admin/*.scss'],
 				tasks: ['sass', 'rtlcss', 'cssmin']
-			},
-			js: {
-				files: [
-					'<%= dirs.js %>/admin/*js',
-					'<%= dirs.js %>/frontend/*js',
-					'!<%= dirs.js %>/admin/*.min.js',
-					'!<%= dirs.js %>/frontend/*.min.js'
-				],
-				tasks: ['jshint', 'uglify']
 			}
 		},
 
@@ -202,7 +142,7 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				src: [
-					'<%= dirs.css %>/*.css'
+					'<%= dirs.css %>/admin/*.css'
 				]
 			}
 		}
@@ -215,36 +155,21 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 
 	// Register tasks
 	grunt.registerTask( 'default', [
-		'js',
 		'css',
 		'i18n'
-	]);
-
-	grunt.registerTask( 'js', [
-		'jshint',
-		'uglify:admin',
-		'uglify:frontend'
 	]);
 
 	grunt.registerTask( 'css', [
 		'sass',
 		'rtlcss',
 		'postcss',
-		'cssmin',
-		'concat'
-	]);
-
-	grunt.registerTask( 'docs', [
-		'clean:apidocs',
-		'shell:apidocs'
+		'cssmin'
 	]);
 
 	// Only an alias to 'default' task.
@@ -255,17 +180,5 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'i18n', [
 		'checktextdomain',
 		'makepot'
-	]);
-
-	grunt.registerTask( 'e2e-tests', [
-		'shell:e2e_tests'
-	]);
-
-	grunt.registerTask( 'e2e-tests-grep', [
-		'shell:e2e_tests_grep'
-	]);
-
-	grunt.registerTask( 'e2e-test', [
-		'shell:e2e_test'
 	]);
 };
