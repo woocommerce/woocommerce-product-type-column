@@ -1,5 +1,5 @@
 === WooCommerce Product Type Column ===
-Contributors: automattic, claudiosanches, peterfabian1000, woothemes
+Contributors: automattic, claudiosanches, peterfabian1000
 Tags: woocommerce, products, admin columns
 Requires at least: 4.7
 Tested up to: 4.9
@@ -8,11 +8,13 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Displays a product type column with icons on products admin screen.
+Displays a "product type" column (with icons) on the products admin screen in WooCommerce.
 
 == Description ==
 
-This plugin includes again the product type column removed on WooCommerce 3.4.
+This plugin adds a "product type" column (with icons) on the products admin screen in WooCommerce which was removed in version 3.4.0 as a result of feedback in [this post](https://woocommerce.wordpress.com/2018/02/28/what-should-happen-to-the-product-type-column-on-the-admin-products-screen/).
+
+If you'd like the column back, simply install and activate this plugin and you're set.
 
 = Requirements =
 
@@ -45,12 +47,12 @@ If you get stuck, you can ask for help in the Plugin Forum.
 
 == Changelog ==
 
-= 4.1.2 - 2018-04-xx =
+= 1.0.0 =
 
-- Initial version
+- Initial release.
 
 == Upgrade Notice ==
 
 = 1.0.0 =
 
-Initial version.
+Initial release.

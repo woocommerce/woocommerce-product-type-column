@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WooCommerce Product Type Column
  * Plugin URI:  https://github.com/woocommerce/woocommerce-product-type-column
- * Description: Displays a product type column with icons on products admin screen
+ * Description: Displays a "product type" column (with icons) on the products admin screen in WooCommerce.
  * Author:      WooCommerce
  * Author URI:  https://woocommerce.com
  * Version:     1.0.0
